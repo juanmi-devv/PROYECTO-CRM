@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+</head>
+<body>
+    <h1>Realizar nuevo pedido</h1>
+    
+    <label>Cliente:</label>
+    <select id="select-usuario"><option>Cargando...</option></select>
+    
+    <br><br>
+
+    <label>Producto:</label>
+    <select id="select-producto"><option>Cargando...</option></select>
+
+    <br><br>
+    <button onclick="guardarPedido()">CONFIRMAR PEDIDO</button>
+
+    <script>
+        // 1. Cargar Usuarios y Productos al entrar
+        window.onload = async () => {
+            // Cargar Usuarios
+            const resUser = await fetch('http://localhost:3000/usuarios');
+            const usuarios = await resUser.json();
+            const selectU = document.getElementById('select-usuario');
+            selectU.innerHTML = '';
+            usuarios.forEach(u => {
+                selectU.innerHTML += `<option value="${u.id}">${u.nombre}</option>`;
+            });
+
+            // Cargar Productos
+            const resProd = await fetch('http://localhost:3000/productos');
+            const productos = await resProd.json();
+            const selectP = document.getElementById('select-producto');
+            selectP.innerHTML = '';
+            productos.forEach(p => {
+                // Guardamos el precio en un atributo data-precio para usarlo luego
+                selectP.innerHTML += `<option value="${p.id}" data-precio="${p.precio}">${p.nombre} - $${p.precio}</option>`;
+            });
+        };
+
+        // 2. Enviar pedido al servidor
+        function guardarPedido() {
+            const usuarioId = document.getElementById('select-usuario').value;
+            const productoSelect = document.getElementById('select-producto');
+            const productoId = productoSelect.value;
+            // Sacamos el precio del atributo data-precio que pusimos arriba
+            const precio = productoSelect.options[productoSelect.selectedIndex].getAttribute('data-precio');
+
+            fetch('http://localhost:3000/crear-pedido', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    usuario_id: usuarioId, 
+                    producto_id: productoId, 
+                    total: precio 
+                })
+            })
+            .then(() => alert('¡Pedido realizado! Se ha anotado en la deuda del cliente.'))
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
