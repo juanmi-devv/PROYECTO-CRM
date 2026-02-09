@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScootCoin - Deudas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="/PROYECTO-CRM/CSS/deudas.css">
+</head>
+<body>
+
+    <header>
+        <h1>Gestión de cobros</h1>
+        <nav class="nav-links">
+            <a href="tienda-lite.html">Nueva venta</a>
+            <a href="deudas.html" class="active">Facturas pendientes</a>
+        </nav>
+    </header>
+
+    <div class="table-container">
+        <h2 style="margin-top: 0;">Facturas pendientes de cobro</h2>
+        <table id="tabla-deudas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th style="text-align: left;">Cliente</th>
+                    <th style="text-align: left;">Resumen Pedido</th>
+                    <th style="text-align: right;">Total</th>
+                    <th>Estado</th>
+                    <th style="text-align: right;">Acción</th>
+                </tr>
+            </thead>
+            <tbody id="lista-deudas">
+                </tbody>
+        </table>
+        <div id="mensaje-vacio" class="empty-state" style="display: none;">¡Todo pagado! No hay deudas pendientes.</div>
+    </div>
+
+    <div id="invoice-template" style="display: none;">
+        <div style="padding: 40px; background: white; color: black; font-family: Arial, sans-serif; max-width: 800px; margin: auto;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #333; padding-bottom: 20px;">
+                <div>
+                    <h1 style="margin: 0; color: #333;">FACTURA</h1>
+                    <p style="margin: 5px 0; color: #666;">ScootCoin S.L.</p>
+                </div>
+                <div style="text-align: right;">
+                    <h3 style="margin: 0; color: #555;">Nº Pedido: <span id="pdf-id">#000</span></h3>
+                    <p id="pdf-fecha" style="margin: 5px 0;">Fecha: --/--/----</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <strong>Facturar a:</strong>
+                <p id="pdf-cliente" style="font-size: 1.2em; margin: 5px 0;">Nombre Cliente</p>
+            </div>
+
+            <table style="width: 100%; margin-top: 30px; border-collapse: collapse;">
+                <thead style="background: #eee;">
+                    <tr>
+                        <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">Producto</th>
+                        <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">Cantidad</th>
+                        <th style="padding: 10px; text-align: right; border-bottom: 1px solid #ddd;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+
+            <div style="margin-top: 30px; text-align: right;">
+                <h2 style="margin: 0;">TOTAL: <span id="pdf-total-final" style="color: #2c3e50;">0.00 €</span></h2>
+                <p style="font-size: 0.8em; color: #777; margin-top: 20px;">Gracias por confiar en ScootCoin</p>
+            </div>
+        </div>
+    </div>
+<div id="mensaje-vacio" class="empty-state" style="display: none;">
+    <h3>🎉 ¡Todo al día!</h3>
+    <p>No hay facturas pendientes de cobro en este momento.</p>
+</div>
+    <script src="/PROYECTO-CRM/JS/deudas.js"></script>
+
+</body>
+</html>

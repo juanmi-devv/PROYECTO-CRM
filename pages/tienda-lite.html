@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ScootCoin LITE</title>
+    <link rel="stylesheet" href="/PROYECTO-CRM/CSS/tienda-lite.css">
+</head>
+<body>
+
+    <header>
+        <h1>ScootCoin</h1>
+        <nav class="nav-links">
+            <a href="tienda.html">Fotos de los productos</a>
+            <a href="deudas.html">Deudas</a>
+        </nav>
+    </header>
+
+    <div class="cliente-wrapper">
+        <select id="select-usuario">
+            <option value="">Cargando clientes...</option>
+        </select>
+    </div>
+
+    <table id="tabla-productos">
+        <thead>
+        <tr>
+        <th class="col-info">Producto</th>
+        <th class="col-precio">Precio</th>
+        <th class="col-stock">Stock</th> 
+        <th class="col-accion">Cant.</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="3" style="text-align:center; padding:20px;">Cargando catálogo...</td></tr>
+        </tbody>
+    </table>
+
+    <div class="footer-action">
+        <div class="total-box" id="total-display">0.00 €</div>
+        <button class="btn-comprar" onclick="realizarPedido()">Realizar pedido</button>
+    </div>
+    
+<script src="/PROYECTO-CRM/JS/tienda-lite.js"></script>
+
+</body>
+</html>
